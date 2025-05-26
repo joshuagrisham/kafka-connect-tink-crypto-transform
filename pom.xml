@@ -6,8 +6,15 @@
 
     <groupId>com.github.joshuagrisham.kafka.connect</groupId>
     <artifactId>tink-crypto-transform</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <name>Kafka Connect Google Tink Crypto Transform</name>
+    <licenses>
+        <license>
+            <name>Apache-2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
     <properties>
         <compiler-plugin.version>3.12.1</compiler-plugin.version>
@@ -70,6 +77,51 @@
                                     <include>com.google.*</include>
                                 </includes>
                             </artifactSet>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>io.confluent</groupId>
+                <version>0.12.0</version>
+                <artifactId>kafka-connect-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <id>hub</id>
+                        <goals>
+                            <goal>kafka-connect</goal>
+                        </goals>
+                        <configuration>
+                            <title>Tink Crypto Transform</title>
+                            <description>
+                                Single Message Transform (SMT) to encrypt or decrypt an entire value string or selected fields using the Google Tink cryptography library (https://developers.google.com/tink).
+                            </description>
+                            <documentationUrl>
+                                https://github.com/joshuagrisham/kafka-connect-tink-crypto-transform/blob/main/README.md
+                            </documentationUrl>
+                            <sourceUrl>
+                                https://github.com/joshuagrisham/kafka-connect-tink-crypto-transform
+                            </sourceUrl>
+
+                            <ownerUsername>joshuagrisham</ownerUsername>
+                            <ownerType>user</ownerType>
+                            <ownerName>Joshua Grisham</ownerName>
+                            <ownerUrl>https://github.com/joshuagrisham</ownerUrl>
+
+                            <kafkaConnectApi>false</kafkaConnectApi>
+                            <componentTypes>
+                                <componentType>transform</componentType>
+                            </componentTypes>
+                            <tags>
+                                <tag>cipher</tag>
+                                <tag>cryptography</tag>
+                                <tag>AES</tag>
+                                <tag>AES-GCM</tag>
+                            </tags>
+                            <confluentControlCenterIntegration>true</confluentControlCenterIntegration>
+                            <singleMessageTransforms>true</singleMessageTransforms>
+                            <supportedEncodings></supportedEncodings>
                         </configuration>
                     </execution>
                 </executions>
